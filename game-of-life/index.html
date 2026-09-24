@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset='utf-8'>
+  <title> Game of Life [GoL]</title>
+  <meta name='author' content="Khyrgrim, France">
+  <script>
+    
+    var TIT,N; // TIT = Titre ; N = Occurence actuelle.
+    var Grd = []; // Grid of the game.
+    var X,Y,D; // Dimension Grille : X = Nombre de lignes ; Y = Nombre de colones ; D = Dimension d'une case en pixel².
+    var Mn = []; // Grille of menu.
+    var Xm,Ym,Dm; // Dimension Menu : Xm = Nombre de lignes ; Ym = Nombre de colones ; Dm = Dimension d'une case en pixel² ; dimension réduites.
+
+   
+    var cnv,ctx; // cnv = Canevas ; ctx = ???.
+    
+    // Following variables are for changing Color, speed, printed figures.
+    var TClr = [];
+    var frq;
+    var fig, rot;
+
+    // Following parameters conditions the previous ones (Setup fonctions in "Setup.js") .
+    var setupfrq, setupclr, setupfig, setuprot;
+
+    // Booleans for playing and display menu.
+    var play, menu;
+
+
+
+    // Modifie les grille Grd[][] en fonction des règles du jeu de la vie. Boucle en fin de program à la fréquence désirée.
+    function Step() {
+      document.title="GoL ('"+TIT+"' step: "+(++N)+")";
+
+      var GrdS = []; // Initialise ou réinitialise un tableau GrdS pour pouvoir faire des modification sur Grd.
+      var nv; // Nombre de case voisine vivante.
+
+      for(var x=0; x<X; x++){ // Parours les x (ligne).
+        GrdS[x] = new Array(); // Initialise les colones.
+        for(var y=0; y<Y; y++){ // Parcours les y (colones).
+            GrdS[x][y] = Grd[x][y]; // On recopie simplement les valeurs.
+        }
+      }
+
+      for(var x=1; x<X-1; x++){ // Parcours les x mais pas les bords
+        for(var y=1; y<Y-1; y++){ // Parcours les y mais pas les bords.
+            nv = GrdS[x-1][y-1] + GrdS[x][y-1] + GrdS[x+1][y-1] + GrdS[x-1][y] + GrdS[x+1][y] + GrdS[x-1][y+1] + GrdS[x][y+1] + GrdS[x+1][y+1]; // Calcul le nombre de voisines vivantes.
+            switch (nv) {
+
+            case 2: // Si 2 voisines vivantes rien ne se passe.
+            break;
+
+            case 3: // Si 3 voisines vivantes naissance.
+            if (GrdS[x][y]!=1 ) {
+              Grd[x][y]=1;
+              PrntGrd(x,y,TClr[1]);
+            } // On ne modifie l'affichage que s'il y a changement mort/vivant.
+            break;
+
+            default: // Sinon mort.
+            if (GrdS[x][y]!=0 ) {
+              Grd[x][y]=0;
+              PrntGrd(x,y,TClr[0]);
+            } // On ne modifie l'affichage que s'il y a changement mort/vivant.
+            break;
+          }
+        }
+      }
+      if (play==true) {
+        TOms = Math.round(1024/frq)
+        setTimeout(Step, TOms); // La fonction Step() fait appel à elle-même si on est en mode play ...
+      } 
+    }
+
+    // Fonction s'activant quand on clique avec la souris.
+    function Click(ev)  {
+      var clckpx, clckpy;
+      r=cnv.getBoundingClientRect(); 
+      clckpx = (ev.clientX-r.left) * (cnv.width/r.width); clckpy = (ev.clientY-r.top) * (cnv.height/r.height); // Récupère les données de positions de la souris sur le canevas.
+      if (PxOnMenu (clckpx,clckpy)==true) { x=(clckpx)/20|0; y=(clckpy)/20|0; ClckMn(x,y); } // Retrouve les coordonnées x y de la case cliquée dans le menu.
+      else { x=(clckpx)/D|0; y=(clckpy)/D|0; ClckGrd(x,y) ;} // Retrouve les coordonnées x y de la case cliquée dans la grille.
+    }
+      
+    // Fonction s'activant quand on appuit sur une touche du clavier.
+    function Key(ev) { 
+      if ((k=ev.keyCode)==80) { // Play or pause
+        if (play == false) {play = true;Step(); return;}
+        else {play=false; return;}
+      }
+      if (k==32) {play=false; Step(); return;} // Step by step
+      if (k==48) {FctIni(10); DimGrd();DimMn(menu); return;}
+      if (k==38||k==39) {SetUpFig(setupfig+1);DimMn(menu);PrntMnFig(fig); return;}
+      if (k==40||k==37) {SetUpFig(setupfig-1);DimMn(menu);PrntMnFig(fig); return;}
+      alert("Game of Life : Aide [Help]\n'Space' to next step (St)" // Alerte pour donner les commandes.
+        +"\n'n'to play and pause"
+        +"\n'0'to reset (Rs)");
+    }
+
+
+    // Fonction pour simplifier l'impression sur l'écran.
+    function Prnt(xp,yp,xd,yd,clr) {ctx.fillStyle=clr; ctx.fillRect(xp,yp,xd,yd);}
+
+    function PrntCnv(xp,yp,d,clr){
+        Prnt(xp*d,yp*d,d,d,clr);  
+    }
+
+
+
+    function Ini() {
+      document.addEventListener('keydown',Key,false);
+      cnv=document.getElementById('Can');
+      cnv.addEventListener('click',Click,false);
+      ctx=cnv.getContext('2d'); ctx.imageSmoothingEnabled=true;
+      FctIni(0); DimGrd(); DimMn(menu);
+    }
+
+  </script>
+  <script src="FctIni.js"></script>
+  <script src="Grid.js"></script>
+  <script src="Menu.js"></script>
+  <script src="Setup.js"></script>
+  <script src="FigList.js"></script>
+
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f5f3ed;color:#18211d;overflow-x:hidden}.top{padding:14px 18px 10px}.back{display:inline-block;color:#1f6c54;font-weight:bold;text-decoration:none}canvas{display:block;width:100%;height:auto;max-width:1280px;touch-action:manipulation}
+</style>
+</head><body style='margin:0; padding:0' onload='Ini()'>
+  <div class='top'><a class='back' href='../'>← Retour au site</a></div>
+  <canvas id='Can' style='margin:0; padding:0'> </canvas>
+</body></html>
