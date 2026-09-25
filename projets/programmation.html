@@ -1,1 +1,109 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Site personnel de Cyril : projets, photos, recettes et curiosité."><meta name="theme-color" content="#f5f3ed"><title>Programmation &amp; Game of Life — Cyril N.</title><link rel="stylesheet" href="../styles.css"></head><body><header class="site-header"><div class="wrap nav-wrap"><a class="brand" href="../index.html">Cyril N.</a><nav class="nav-links" aria-label="Navigation principale"><a href="../index.html#apropos">À propos</a><a href="../index.html#projets">Projets</a><a href="../index.html#voyages">Photos</a><a href="../index.html#cuisine">Recettes</a><a href="../index.html#soutien">Soutien</a></nav></div></header><main class="detail-main"><div class="wrap"><a class="back-link" href="../index.html#projets">← Retour aux projets</a><section class="detail-hero no-image"><div><p class="eyebrow">PROJET · CODE</p><h1>Programmation & Game of Life</h1><p>L’ancien site était lui-même un projet d’apprentissage : C++, HTML, CSS, JavaScript, PHP et SQL.</p><div class="actions"><a class="button primary" href="../game-of-life/index.html">Lancer le Game of Life</a><a class="button secondary" href="../index.html">Voir le nouveau site</a></div></div></section><div class="detail-content single"><article class="content-block"><h2>Apprentissage</h2><p>J’ai commencé par le C++ pour comprendre les bases de la programmation et les grands principes de la programmation orientée objet, puis j’ai appris les technologies web en construisant progressivement mon propre site.</p><h2>Le Game of Life</h2><p>Cette petite implémentation historique du Jeu de la vie de Conway a été conservée. Elle fonctionne entièrement en JavaScript dans le navigateur, ce qui la rend compatible avec GitHub Pages sans serveur.</p><h2>Le nouveau site</h2><p>La version actuelle reprend l’idée initiale — apprendre en faisant — mais avec une architecture statique plus simple, responsive et durable : HTML, CSS et un minimum de JavaScript.</p></article></div></div></main><footer><div class="wrap footer-inner"><span>© Cyril N.</span><span>Site statique · GitHub Pages.</span></div></footer><script src="../site-config.js"></script></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Programmation, apprentissage web et simulation interactive du Jeu de la vie de Conway." name="description"/>
+<meta content="#eef4fb" name="theme-color"/>
+<title>Programmation &amp; Jeu de la vie — Cyril N.</title>
+<link href="programmation.html" hreflang="fr" rel="alternate"/>
+<link href="../en/projets/programmation.html" hreflang="en" rel="alternate"/>
+<link href="../styles.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="site-header">
+<div class="wrap nav-wrap">
+<a class="brand" href="../index.html">Cyril N. (KhyrLab)</a>
+<button aria-controls="site-navigation" aria-expanded="false" aria-label="Ouvrir le menu" class="menu-toggle" type="button"><span></span><span></span><span></span></button>
+<nav aria-label="Navigation principale" class="nav-links" id="site-navigation">
+<a href="../index.html#apropos">À propos</a><a href="../index.html#projets">Projets</a><a href="../index.html#voyages">Photos</a><a href="../index.html#cuisine">Recettes</a><a href="../index.html#soutien">Soutien</a>
+<span aria-label="Langue" class="lang-switch"><a aria-current="page" class="lang-link is-active" href="programmation.html" lang="fr">FR</a><a class="lang-link" href="../en/projets/programmation.html" lang="en">EN</a></span>
+</nav>
+</div>
+</header>
+<main class="detail-main">
+<div class="wrap">
+<a class="back-link" href="../index.html#projets">← Retour aux projets</a>
+<section class="detail-hero no-image">
+<div>
+<p class="eyebrow">PROJET · CODE</p>
+<h1>Programmation &amp; Jeu de la vie</h1>
+<p>Un terrain d’apprentissage pour le C++, le web et JavaScript — avec une nouvelle version du Jeu de la vie directement jouable sur cette page.</p>
+<div class="actions"><a class="button primary" href="#jeu-de-la-vie">Essayer la simulation</a><a class="button secondary" href="#apprentissage">Lire l’histoire du projet</a></div>
+</div>
+</section>
+<section aria-labelledby="gol-title" class="life-lab" data-cols="96" data-game-of-life="" data-rows="54" id="jeu-de-la-vie">
+<div class="life-lab-head">
+<div>
+<p class="eyebrow">SIMULATION INTERACTIVE</p>
+<h2 id="gol-title">Jeu de la vie de Conway</h2>
+<p>Chaque cellule suit deux règles simples : une cellule vivante survit avec 2 ou 3 voisines, et une cellule morte naît avec exactement 3 voisines.</p>
+</div>
+<div aria-live="polite" class="life-status">
+<div class="life-stat"><span>Génération</span><strong data-generation="">0</strong></div>
+<div class="life-stat"><span>Population</span><strong data-population="">0</strong></div>
+</div>
+</div>
+<div class="life-stage">
+<canvas aria-label="Grille interactive du Jeu de la vie. Cliquez pour placer le motif sélectionné." data-gol-canvas="" tabindex="0"></canvas>
+</div>
+<div aria-label="Commandes de simulation" class="life-toolbar">
+<button class="control-button primary" data-action="play" type="button">▶ Lecture</button>
+<button class="control-button" data-action="pause" type="button">Ⅱ Pause</button>
+<button class="control-button" data-action="step" type="button">→ Une étape</button>
+<button class="control-button" data-action="random" type="button">✦ Aléatoire</button>
+<button class="control-button" data-action="clear" type="button">Effacer</button>
+</div>
+<div class="life-options">
+<div class="life-control">
+<label for="gol-speed"><span>Vitesse</span><strong data-speed-value="">10 fps</strong></label>
+<input data-speed="" id="gol-speed" max="30" min="1" step="1" type="range" value="10"/>
+</div>
+<div class="life-control">
+<span class="control-label">Bords de la grille</span>
+<label class="toggle-row" for="gol-wrap"><input checked="" data-wrap="" id="gol-wrap" type="checkbox"/><span>Relier les bords</span></label>
+</div>
+<div class="life-control">
+<label for="gol-theme">Couleurs</label>
+<select data-theme="" id="gol-theme"><option value="blue">Bleu nuit</option><option value="light">Clair</option><option value="green">Terminal vert</option></select>
+</div>
+</div>
+<div class="pattern-panel">
+<div class="pattern-panel-head">
+<div><p class="eyebrow">MOTIFS</p><h3>Choisis un motif, puis clique dans la grille</h3></div>
+<div aria-label="Rotation du motif" class="rotation-controls">
+<button aria-label="Tourner à gauche" class="control-button" data-action="rotate-left" type="button">↺</button>
+<span class="rotation-readout" data-rotation="">0°</span>
+<button aria-label="Tourner à droite" class="control-button" data-action="rotate-right" type="button">↻</button>
+</div>
+</div>
+<div class="pattern-grid">
+<button aria-pressed="false" class="pattern-button" data-pattern="cell" type="button"><strong>Crayon</strong><span>Une cellule</span></button>
+<button aria-pressed="true" class="pattern-button is-selected" data-pattern="glider" type="button"><strong>Planeur</strong><span>5 cellules</span></button>
+<button aria-pressed="false" class="pattern-button" data-pattern="beacon" type="button"><strong>Balise</strong><span>Oscillateur</span></button>
+<button aria-pressed="false" class="pattern-button" data-pattern="pulsar" type="button"><strong>Pulsar</strong><span>Grand oscillateur</span></button>
+<button aria-pressed="false" class="pattern-button" data-pattern="lwss" type="button"><strong>Vaisseau léger</strong><span>Déplacement</span></button>
+<button aria-pressed="false" class="pattern-button" data-pattern="gun" type="button"><strong>Canon à planeurs</strong><span>Générateur</span></button>
+</div>
+<div class="life-toolbar" style="padding-left:0;padding-right:0"><button class="control-button" data-action="center" type="button">Placer le motif au centre</button></div>
+<p class="life-hint">Astuce : le canevas a le focus clavier après un clic. <kbd>Espace</kbd> lance/met en pause et <kbd>→</kbd> avance d’une génération.</p>
+</div>
+</section>
+<div class="game-copy" id="apprentissage">
+<article class="content-block">
+<h2>Apprendre en construisant</h2>
+<p>J’ai commencé par le C++ pour comprendre les bases de la programmation et les grands principes de la programmation orientée objet, puis j’ai appris HTML, CSS, JavaScript, PHP et SQL en construisant progressivement mon propre site.</p>
+<h2>Du projet historique à cette version</h2>
+<p>La première implémentation du Jeu de la vie faisait partie de cet apprentissage. Cette version conserve le principe, mais l’interface a été repensée pour être intégrée à la page, responsive et plus simple à manipuler sur ordinateur comme sur mobile.</p>
+<h2>Le site aujourd’hui</h2>
+<p>Le site reste volontairement statique : HTML, CSS et JavaScript suffisent. Cela le rend facile à maintenir et parfaitement compatible avec GitHub Pages, sans serveur ni dépendance externe.</p>
+</article>
+</div>
+</div>
+</main>
+<footer><div class="wrap footer-inner"><span>© Cyril N.</span><span>Site statique · GitHub Pages.</span></div></footer>
+<script src="../site-config.js"></script>
+<script src="../site.js"></script>
+<script src="../game-of-life/game.js"></script>
+</body>
+</html>

@@ -1,37 +1,36 @@
 # Site personnel — version GitHub Pages
 
-Cette version est entièrement statique et fonctionne sur GitHub Pages. Elle est pensée pour téléphone, tablette et ordinateur.
+Ce site est entièrement statique et fonctionne sur GitHub Pages, sans framework ni étape de compilation. Il est responsive pour téléphone, tablette et ordinateur.
 
-## Avant publication
+## Structure principale
 
-1. Ouvre `site-config.js`.
-2. Remplace les deux chaînes vides par tes URL Tipeee et Patreon :
+- `index.html` : accueil en français.
+- `en/index.html` : accueil en anglais.
+- `projets/`, `photos/`, `recettes/` : pages détaillées françaises.
+- `en/projets/`, `en/photos/`, `en/recettes/` : traductions anglaises correspondantes.
+- `game-of-life/game.js` : simulation moderne du Jeu de la vie intégrée dans `projets/programmation.html` et sa version anglaise.
+- `game-of-life/index.html` + anciens fichiers JS : version historique conservée dans l’archive.
+- `site-config.js` : liens Tipeee / Patreon partagés par les deux langues.
+- `site.js` : menu mobile et mise en évidence de la rubrique visible.
+- `styles.css` : styles partagés, navigation et interface du Jeu de la vie.
+
+## Liens de soutien
+
+Les URL Tipeee et Patreon sont centralisées dans `site-config.js` :
 
 ```js
 const SUPPORT_LINKS = {
-  tipeee: "https://www.tipeee.com/ton-compte",
-  patreon: "https://www.patreon.com/ton-compte"
+  tipeee: "https://fr.tipeee.com/khyrlab/",
+  patreon: "https://www.patreon.com/cw/Khyrlab"
 };
 ```
 
-Tant que ces URL restent vides, les cartes Tipeee/Patreon sont visibles mais volontairement non cliquables.
+## Jeu de la vie
+
+La page `projets/programmation.html` contient maintenant la simulation directement dans la page : lecture/pause, pas-à-pas, vitesse, bords reliés, palettes de couleurs, génération/population, placement et rotation de plusieurs motifs. La version anglaise est disponible dans `en/projets/programmation.html`.
 
 ## Publication GitHub Pages
 
-Dépose le contenu de ce dossier à la racine d’un dépôt GitHub, puis active : **Settings → Pages → Deploy from a branch → main → /(root)**.
+Dépose le contenu de ce dossier à la racine du dépôt GitHub puis active : **Settings → Pages → Deploy from a branch → main → /(root)**.
 
-## Structure
-
-- `index.html` : accueil
-- `projets/` : pages détaillées des projets
-- `photos/` : photos en grand + légendes
-- `recettes/` : ingrédients et préparation
-- `game-of-life/` : ancien mini-projet JavaScript
-- `site-config.js` : liens Tipeee / Patreon
-- `styles.css` : mise en page partagée
-
-L’ancienne adresse e-mail n’est plus présente. LinkedIn est conservé.
-
-
-## Variante bleue
-Cette version applique une palette plus bleue, tout en gardant la même structure mobile-first et les mêmes contenus.
+Aucune dépendance, commande npm ou génération n’est nécessaire.

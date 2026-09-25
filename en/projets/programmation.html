@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Programming, web learning and an interactive Conway's Game of Life simulation." name="description"/>
+<meta content="#eef4fb" name="theme-color"/>
+<title>Programming &amp; Game of Life — Cyril N.</title>
+<link href="../../projets/programmation.html" hreflang="fr" rel="alternate"/>
+<link href="programmation.html" hreflang="en" rel="alternate"/>
+<link href="../../styles.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="site-header">
+<div class="wrap nav-wrap">
+<a class="brand" href="../index.html">Cyril N. (KhyrLab)</a>
+<button aria-controls="site-navigation" aria-expanded="false" aria-label="Open menu" class="menu-toggle" type="button"><span></span><span></span><span></span></button>
+<nav aria-label="Main navigation" class="nav-links" id="site-navigation">
+<a href="../index.html#about">About</a><a href="../index.html#projects">Projects</a><a href="../index.html#travel">Photos</a><a href="../index.html#recipes">Recipes</a><a href="../index.html#support">Support</a>
+<span aria-label="Language" class="lang-switch"><a class="lang-link" href="../../projets/programmation.html" lang="fr">FR</a><a aria-current="page" class="lang-link is-active" href="programmation.html" lang="en">EN</a></span>
+</nav>
+</div>
+</header>
+<main class="detail-main">
+<div class="wrap">
+<a class="back-link" href="../index.html#projects">← Back to projects</a>
+<section class="detail-hero no-image">
+<div>
+<p class="eyebrow">PROJECT · CODE</p>
+<h1>Programming &amp; Game of Life</h1>
+<p>A learning playground for C++, web development and JavaScript — now with a new Game of Life version playable directly on this page.</p>
+<div class="actions"><a class="button primary" href="#game-of-life">Try the simulation</a><a class="button secondary" href="#learning">Read the project story</a></div>
+</div>
+</section>
+<section aria-labelledby="gol-title" class="life-lab" data-cols="96" data-game-of-life="" data-rows="54" id="game-of-life">
+<div class="life-lab-head">
+<div>
+<p class="eyebrow">INTERACTIVE SIMULATION</p>
+<h2 id="gol-title">Conway's Game of Life</h2>
+<p>Every cell follows two simple rules: a live cell survives with 2 or 3 neighbours, and a dead cell is born with exactly 3 neighbours.</p>
+</div>
+<div aria-live="polite" class="life-status"><div class="life-stat"><span>Generation</span><strong data-generation="">0</strong></div><div class="life-stat"><span>Population</span><strong data-population="">0</strong></div></div>
+</div>
+<div class="life-stage"><canvas aria-label="Interactive Game of Life grid. Click to place the selected pattern." data-gol-canvas="" tabindex="0"></canvas></div>
+<div aria-label="Simulation controls" class="life-toolbar">
+<button class="control-button primary" data-action="play" type="button">▶ Play</button><button class="control-button" data-action="pause" type="button">Ⅱ Pause</button><button class="control-button" data-action="step" type="button">→ Step</button><button class="control-button" data-action="random" type="button">✦ Random</button><button class="control-button" data-action="clear" type="button">Clear</button>
+</div>
+<div class="life-options">
+<div class="life-control"><label for="gol-speed"><span>Speed</span><strong data-speed-value="">10 fps</strong></label><input data-speed="" id="gol-speed" max="30" min="1" step="1" type="range" value="10"/></div>
+<div class="life-control"><span class="control-label">Grid edges</span><label class="toggle-row" for="gol-wrap"><input checked="" data-wrap="" id="gol-wrap" type="checkbox"/><span>Wrap around edges</span></label></div>
+<div class="life-control"><label for="gol-theme">Colours</label><select data-theme="" id="gol-theme"><option value="blue">Midnight blue</option><option value="light">Light</option><option value="green">Green terminal</option></select></div>
+</div>
+<div class="pattern-panel">
+<div class="pattern-panel-head"><div><p class="eyebrow">PATTERNS</p><h3>Choose a pattern, then click the grid</h3></div><div aria-label="Pattern rotation" class="rotation-controls"><button aria-label="Rotate left" class="control-button" data-action="rotate-left" type="button">↺</button><span class="rotation-readout" data-rotation="">0°</span><button aria-label="Rotate right" class="control-button" data-action="rotate-right" type="button">↻</button></div></div>
+<div class="pattern-grid">
+<button aria-pressed="false" class="pattern-button" data-pattern="cell" type="button"><strong>Pencil</strong><span>One cell</span></button><button aria-pressed="true" class="pattern-button is-selected" data-pattern="glider" type="button"><strong>Glider</strong><span>5 cells</span></button><button aria-pressed="false" class="pattern-button" data-pattern="beacon" type="button"><strong>Beacon</strong><span>Oscillator</span></button><button aria-pressed="false" class="pattern-button" data-pattern="pulsar" type="button"><strong>Pulsar</strong><span>Large oscillator</span></button><button aria-pressed="false" class="pattern-button" data-pattern="lwss" type="button"><strong>Lightweight spaceship</strong><span>Moving pattern</span></button><button aria-pressed="false" class="pattern-button" data-pattern="gun" type="button"><strong>Glider gun</strong><span>Generator</span></button>
+</div>
+<div class="life-toolbar" style="padding-left:0;padding-right:0"><button class="control-button" data-action="center" type="button">Place pattern in the centre</button></div>
+<p class="life-hint">Tip: after clicking the canvas, <kbd>Space</kbd> plays/pauses and <kbd>→</kbd> advances one generation.</p>
+</div>
+</section>
+<div class="game-copy" id="learning"><article class="content-block">
+<h2>Learning by building</h2><p>I started with C++ to understand programming fundamentals and the main ideas behind object-oriented programming, then learned HTML, CSS, JavaScript, PHP and SQL while gradually building my own website.</p>
+<h2>From the historical project to this version</h2><p>The first Game of Life implementation was part of that learning process. This version keeps the same idea but redesigns the interface so it sits directly in the page, works responsively and is easier to use on both desktop and mobile.</p>
+<h2>The website today</h2><p>The site deliberately remains static: HTML, CSS and JavaScript are enough. That makes it easy to maintain and fully compatible with GitHub Pages, with no server or external dependency.</p>
+</article></div>
+</div>
+</main>
+<footer><div class="wrap footer-inner"><span>© Cyril N.</span><span>Static site · GitHub Pages.</span></div></footer>
+<script src="../../site-config.js"></script><script src="../../site.js"></script><script src="../../game-of-life/game.js"></script>
+</body>
+</html>
